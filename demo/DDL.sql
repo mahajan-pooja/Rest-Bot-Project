@@ -1,6 +1,7 @@
 CREATE TABLE User (
 	id int not null generated always as userId (start with 1 increment by), 
 	name varchar(10) not null, 
+	contact_no varchar(11) not null,
 	email varchar(30) not null, 
 	primary key (userId)
 );
@@ -21,5 +22,5 @@ CREATE TABLE Movie (
 	foreign key (num) 
 		references Theater(theaterId) 
 		on update restrict on delete cascade -- if movie is deleted from Theater table,
-											 -- cascades that action in Movie table
+						-- cascades that action in Movie table
 );
