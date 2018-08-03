@@ -3,13 +3,14 @@ package com.example.demo.bean;
 import java.util.Date;
 
 public class Booking {
-	int bookingId;
-	int userId;
-	int movieId;
-	int ticketsbooked;
-	float amount;
-	Date date;
-	Date time;
+	private int bookingId;
+	private int userId;
+	private int movieId;
+	private int ticketsbooked;
+	private float amount;
+	private Date date;
+	private Date time;
+	
 	public int getBookingId() {
 		return bookingId;
 	}

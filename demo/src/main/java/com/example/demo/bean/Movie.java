@@ -1,10 +1,11 @@
 package com.example.demo.bean;
 
 public class Movie {
-	int movieId;
-	String maovieName;
-	int theatreId;
-	String language;
+	private int movieId;
+	private String movieName;
+	private int theatreId;
+	private String language;
+	
 	public int getMovieId() {
 		return movieId;
 	}
@@ -12,10 +13,10 @@ public class Movie {
 		this.movieId = movieId;
 	}
 	public String getMaovieName() {
-		return maovieName;
+		return movieName;
 	}
 	public void setMaovieName(String maovieName) {
-		this.maovieName = maovieName;
+		this.movieName = maovieName;
 	}
 	public int getTheatreId() {
 		return theatreId;

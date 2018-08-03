@@ -2,17 +2,17 @@ package com.example.demo.bean;
 
 import java.util.List;
 
-public class Theatre {
-	int theatreId;
+public class Theater {
+	int theaterId;
 	String name;
 	String address;
 	List<Movie> movies;
 	int seatsAvailable;
-	public int getTheatreId() {
-		return theatreId;
+	public int getTheaterId() {
+		return theaterId;
 	}
-	public void setTheatreId(int theatreId) {
-		this.theatreId = theatreId;
+	public void setTheaterId(int theatreId) {
+		this.theaterId = theatreId;
 	}
 	public String getName() {
 		return name;
