@@ -76,23 +76,23 @@ public class UserController {
 		return null;
 	}
 
-	// Need an admin user ID check - only admin can create theatre
+	// Need an admin user ID check - only admin can create theater
 	@RequestMapping(value = "/users/{userId}/theaters", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Theater> createtheater(@PathVariable("userId") Long userId, @RequestBody Theater theater) {
 		return null;
 	}
 
-	// Need an admin user ID check - only admin can delete theatre
+	// Need an admin user ID check - only admin can delete theater
 	@RequestMapping(value = "/users/{userid}/theaters/{theaterId}", method = RequestMethod.DELETE)
 	public ResponseEntity<Theater> deletetheater(@PathVariable("userId") Long userId, 
-			@PathVariable("theatreId") Long theatreId) {
+			@PathVariable("theaterId") Long theaterId) {
 		return null;
 	}
 
-	// Need an admin user ID check - only admin can update theatre
-	@RequestMapping(value = "/users/{userId}/theaters/{theatreId}", method = RequestMethod.PUT)
+	// Need an admin user ID check - only admin can update theater
+	@RequestMapping(value = "/users/{userId}/theaters/{theaterId}", method = RequestMethod.PUT)
 	public ResponseEntity<Theater> updatetheater(@PathVariable("userId") Long userId, 
-			@PathVariable("theatreId") Long theatreId,
+			@PathVariable("theaterId") Long theaterId,
 			@RequestBody Theater theater) {
 		return null;
 	}
