@@ -69,12 +69,12 @@ public class UserController {
 		return new ResponseEntity<List<Theater>>(theaters, headers, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/users/{userId}/theaters/{theaterId}", method = RequestMethod.GET)
-	public ResponseEntity<User> getTheater(
-			@PathVariable("userId") Long userId, 
-			@PathVariable("theaterId") Long theaterId) {
-		return null;
-	}
+//	@RequestMapping(value = "/users/{userId}/theaters/{theaterId}", method = RequestMethod.GET)
+//	public ResponseEntity<User> getTheater(
+//			@PathVariable("userId") Long userId, 
+//			@PathVariable("theaterId") Long theaterId) {
+//		return null;
+//	}
 
 	// Need an admin user ID check - only admin can create theater
 	@RequestMapping(value = "/users/{userId}/theaters", method = RequestMethod.POST, produces = "application/json")
@@ -142,36 +142,36 @@ public class UserController {
 	/**
 	 * ShowTime Controller
 	 */
-	//user id is not needed as both admin and customer can see the list
-	@RequestMapping(value = "/users/showtimes", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<ShowTime> showTimings() {
-		return null;	
-	}
-	//user id is not needed as both admin and customer can see the list
-	@RequestMapping(value = "/users/showtimes/{showtimeId}", method = RequestMethod.GET)
-	public ResponseEntity<ShowTime> getShowTiming(@PathVariable("showtimeId") Long showtimeId) {
-		return null;
-	}
-	
-	// Admin ID check - only admin can create showtimes
-	@RequestMapping(value = "/users/{userId}/showtimes", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<ShowTime> createShowTiming(@PathVariable("userId") Long userId, @RequestBody ShowTime showtime) {
-		return null;
-	}
-	// Admin ID check - only admin can delete showtimes
-	@RequestMapping(value = "/users/{userId}/showtimes/{showtimeId}", method = RequestMethod.DELETE)
-	public ResponseEntity<ShowTime> deleteShowTiming(@PathVariable("userId") Long userId,
-			@PathVariable("showtimeId") Long showtimeId) {
-		return null;
-	}
-
-	// Admin ID check - only admin can update showtimes
-	@RequestMapping(value = "/users/{userId}/showtimes/{showtimeId}", method = RequestMethod.PUT)
-	public ResponseEntity<ShowTime> updateShowTiming(@PathVariable("userId") Long userId,
-			@PathVariable("showtimeId") Long showtimeId,
-			@RequestBody ShowTime showtime) {
-		return null;
-	}
+//	//user id is not needed as both admin and customer can see the list
+//	@RequestMapping(value = "/users/showtimes", method = RequestMethod.GET, produces = "application/json")
+//	public ResponseEntity<ShowTime> showTimings() {
+//		return null;	
+//	}
+//	//user id is not needed as both admin and customer can see the list
+//	@RequestMapping(value = "/users/showtimes/{showtimeId}", method = RequestMethod.GET)
+//	public ResponseEntity<ShowTime> getShowTiming(@PathVariable("showtimeId") Long showtimeId) {
+//		return null;
+//	}
+//	
+//	// Admin ID check - only admin can create showtimes
+//	@RequestMapping(value = "/users/{userId}/showtimes", method = RequestMethod.POST, produces = "application/json")
+//	public ResponseEntity<ShowTime> createShowTiming(@PathVariable("userId") Long userId, @RequestBody ShowTime showtime) {
+//		return null;
+//	}
+//	// Admin ID check - only admin can delete showtimes
+//	@RequestMapping(value = "/users/{userId}/showtimes/{showtimeId}", method = RequestMethod.DELETE)
+//	public ResponseEntity<ShowTime> deleteShowTiming(@PathVariable("userId") Long userId,
+//			@PathVariable("showtimeId") Long showtimeId) {
+//		return null;
+//	}
+//
+//	// Admin ID check - only admin can update showtimes
+//	@RequestMapping(value = "/users/{userId}/showtimes/{showtimeId}", method = RequestMethod.PUT)
+//	public ResponseEntity<ShowTime> updateShowTiming(@PathVariable("userId") Long userId,
+//			@PathVariable("showtimeId") Long showtimeId,
+//			@RequestBody ShowTime showtime) {
+//		return null;
+//	}
 
 	/**
 	 * BookingController
