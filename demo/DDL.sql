@@ -35,5 +35,6 @@ CREATE TABLE Booking (
 	Bookingdate date not null primary key ,
 	NoOfSeats int,
 	MovieId int,
+	TheaterId int,
     FOREIGN KEY (MovieId) REFERENCES Movie(MovieId)
 );
