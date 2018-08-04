@@ -24,3 +24,16 @@ CREATE TABLE Movie (
 		on update restrict on delete cascade -- if movie is deleted from Theater table,
 						-- cascades that action in Movie table
 );
+
+CREATE TABLE ShowTime (
+	sdate date not null primary key ,
+	MovieId int,
+	FOREIGN KEY (MovieId) REFERENCES Movie(MovieId)
+);
+
+CREATE TABLE Booking (
+	Bookingdate date not null primary key ,
+	NoOfSeats int,
+	MovieId int,
+    FOREIGN KEY (MovieId) REFERENCES Movie(MovieId)
+);
