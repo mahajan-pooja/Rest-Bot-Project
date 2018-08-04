@@ -28,7 +28,9 @@ CREATE TABLE Movie (
 CREATE TABLE ShowTime (
 	sdate date not null primary key ,
 	MovieId int,
-	FOREIGN KEY (MovieId) REFERENCES Movie(MovieId)
+	TheaterId int,
+	FOREIGN KEY (MovieId) REFERENCES Movie(movieId),
+	FOREIGN KEY (TheaterId) REFERENCES Theater(TheaterId)
 );
 
 CREATE TABLE Booking (
@@ -36,5 +38,6 @@ CREATE TABLE Booking (
 	NoOfSeats int,
 	MovieId int,
 	TheaterId int,
-    FOREIGN KEY (MovieId) REFERENCES Movie(MovieId)
+    FOREIGN KEY (MovieId) REFERENCES Movie(movieId),
+	FOREIGN KEY (TheaterId) REFERENCES Theater(TheaterId)
 );
