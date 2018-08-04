@@ -44,7 +44,9 @@ CREATE TABLE Booking (
 	userId int not null,
 	numSeatsBooked int not null,
 	movieId int not null,
+	showtimeId int not null, 
 	-- theaterId int not null,
+	FOREIGN KEY (showtimeId) REFERENCES ShowTime(showtimeId)
 	FOREIGN KEY (userId) references User(userId),
     FOREIGN KEY (movieId) REFERENCES Movie(movieId)
 	-- FOREIGN KEY (TheaterId) REFERENCES Theater(TheaterId)
