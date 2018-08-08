@@ -1,6 +1,11 @@
 package com.example.demo.bean;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GenerationType;
 
+@Entity
 public class Movie {
+@Id @GeneratedValue(strategy=GenerationType.Auto)
 	private int movieId;
 	private String movieName;
 	private int theatreId;

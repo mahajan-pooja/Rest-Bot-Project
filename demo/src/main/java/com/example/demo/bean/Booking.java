@@ -1,10 +1,13 @@
 package com.example.demo.bean;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.GenerationType;
 import java.util.Date;
+
 @Entity
 public class Booking {
-@Id
+
+@Id@GeneratedValue(strategy=GenerationType.Auto)
 	private int bookingId;
 	private int userId;
 	private int movieId;
