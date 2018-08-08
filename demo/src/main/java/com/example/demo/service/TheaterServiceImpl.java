@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Service("theaterService")
 public class TheaterServiceImpl implements TheaterService {
 	
-	@Autowired
-	private TheaterDao dao; // Dont know why this is giving me an error when i imported it correctly above
+//	@Autowired
+//	private TheaterDao dao; // Dont know why this is giving me an error when i imported it correctly above
 
 	@Override
 	public List<Theater> getTheaters() {

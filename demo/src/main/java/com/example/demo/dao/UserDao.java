@@ -5,9 +5,9 @@ import java.util.List;
 import com.example.demo.bean.User;
 
 public interface UserDao {
-	public List<User> users();
+	public List<User> getUsers();
 
-	public User getUsers(Long userId);
+	public User getUser(Long userId);
 
 	public int deleteUsers(Long userId);
 

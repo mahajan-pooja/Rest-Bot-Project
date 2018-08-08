@@ -1,19 +1,18 @@
 package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-@RestController
-@EnableAutoConfiguration
-@SpringBootApplication
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@ComponentScan({"com.example.demo.*"})
+@SpringBootApplication(scanBasePackages={"com.example.demo", "com.example.demo.bean", "com.example.demo.controller",
+	"com.example.demo.dao", "com.example.demo.service"})
+@PropertySource(value = {"classpath:application.properties", "file:${config.home}/example/demo/application-override.properties"},ignoreResourceNotFound = true)
 public class DemoApplication {
 
-	@RequestMapping("/")
-	String home() {
-		return "Hello World!";
-	}
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
