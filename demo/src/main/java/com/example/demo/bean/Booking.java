@@ -1,8 +1,10 @@
 package com.example.demo.bean;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
-
+@Entity
 public class Booking {
+@Id
 	private int bookingId;
 	private int userId;
 	private int movieId;
