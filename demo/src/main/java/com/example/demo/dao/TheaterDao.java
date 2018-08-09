@@ -9,5 +9,5 @@ public interface TheaterDao {
 
 	public int updateTheaters(Theater theatre);
 
-	public int createTheaters(Theater theatre);
+	// public int createTheaters(Theater theatre);
 }
