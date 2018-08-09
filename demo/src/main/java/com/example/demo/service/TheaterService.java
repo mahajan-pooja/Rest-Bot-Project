@@ -4,7 +4,7 @@ import java.util.List;
 import com.example.demo.bean.Theater;
 
 public interface TheaterService {
-	public List<Theater> getTheaters();
+	public Theater getTheater();
 
 	public int deleteTheaters(Long theatreId);
 
