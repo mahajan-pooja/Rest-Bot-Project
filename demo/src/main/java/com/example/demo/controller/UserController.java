@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.service.TheaterService;
+
 import com.example.demo.bean.Booking;
 import com.example.demo.bean.Movie;
-import com.example.demo.bean.ShowTime;
-import com.example.demo.bean.Theater;
 import com.example.demo.bean.User;
 
+import com.example.demo.bean.Theater;
+import com.example.demo.service.TheaterService;
+
+@RestController
 public class UserController {
 
 	@Autowired
@@ -28,7 +31,7 @@ public class UserController {
 	 * 
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<User>> users() {
+	public ResponseEntity<List<User>> getUsers() {
 		return null;
 	}
 
@@ -57,132 +60,145 @@ public class UserController {
 	 * TheaterController functionality
 	 * 
 	 */
-	@RequestMapping(value = "/users/{id}/theatres", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<Theater>> theatres() {
-		HttpHeaders headers = new HttpHeaders();
-		List<Theater> theaters = theaterService.getTheaters();
+	@RequestMapping(value = "/users/theaters", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Theater> getTheater() {
+		// HttpHeaders headers = new HttpHeaders();
+		Theater theater = theaterService.getTheater();
 
-		if (theaters == null) {
-			return new ResponseEntity<List<Theater>>(HttpStatus.NOT_FOUND);
+		if (theater == null) {
+			return new ResponseEntity<Theater>(HttpStatus.NOT_FOUND);
 		}
-		headers.add("Number Of Records Found", String.valueOf(theaters.size()));
-		return new ResponseEntity<List<Theater>>(theaters, headers, HttpStatus.OK);
+		// headers.add("Number Of Records Found", String.valueOf(theater.toString());
+		return new ResponseEntity<Theater>(theater, HttpStatus.OK);
 	}
+	
+//	@RequestMapping(value = "/users/{userId}/theaters/{theaterId}", method = RequestMethod.GET)
+//	public ResponseEntity<User> getTheater(
+//			@PathVariable("userId") Long userId, 
+//			@PathVariable("theaterId") Long theaterId) {
+//		return null;
+//	}
 
-	@RequestMapping(value = "/users/{id}/theatres", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<Theater> createTheatre(@RequestBody Theater theatre) {
+	// Need an admin user ID check - only admin can create theater
+	@RequestMapping(value = "/users/{userId}/theaters", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<Theater> createtheater(@PathVariable("userId") Long userId, @RequestBody Theater theater) {
 		return null;
 	}
 
-	@RequestMapping(value = "/users/{id}/theatres/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Theater> deleteTheatre(@PathVariable("id") Long theatreId) {
+	// Need an admin user ID check - only admin can delete theater
+	@RequestMapping(value = "/users/{userid}/theaters/{theaterId}", method = RequestMethod.DELETE)
+	public ResponseEntity<Theater> deletetheater(@PathVariable("userId") Long userId, 
+			@PathVariable("theaterId") Long theaterId) {
 		return null;
 	}
 
-	@RequestMapping(value = "/users/{id}/theatres/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Theater> updateTheatre(@PathVariable("id") Long theatreId,
-			@RequestBody Theater theatre) {
+	// Need an admin user ID check - only admin can update theater
+	@RequestMapping(value = "/users/{userId}/theaters/{theaterId}", method = RequestMethod.PUT)
+	public ResponseEntity<Theater> updatetheater(@PathVariable("userId") Long userId, 
+			@PathVariable("theaterId") Long theaterId,
+			@RequestBody Theater theater) {
 		return null;
 	}
 
 
 	/**
 	 * MovieController
-	 * Functionality for Users and TheatreAdmin
+	 * Functionality for Users and theaterAdmin
 	 */
-	@RequestMapping(value = "/users/{id}/theatres/{id}/movies", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Movie> movies() {
-		return null;
-	}
-
-	@RequestMapping(value = "/users/{id}/theatres/{id}/movies/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Movie> getMovie(@PathVariable("id") Long movieId) {
-		return null;
-	}
-
-	// Need an admin user ID check for these 3 methods below
-	@RequestMapping(value = "/users/{id}/theatres/{id}/movies", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-		return null;
-	}
-
-	@RequestMapping(value = "/users/{id}/theatres/{id}/movies/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Movie> deleteMovie(@PathVariable("id") Long movieId) {
-		return null;
-	}
-
-	@RequestMapping(value = "/users/{id}/theatres/{id}/movies/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Movie> updateMovie(@PathVariable("id") Long movieId,
-			@RequestBody Movie movie) {
+	//not passing theater id so that it will show all movies in all theaters
+	@RequestMapping(value = "/users/{userId}/movies", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Movie> getAllMovies(@PathVariable("userId") Long userId) {
 		return null;
 	}
 	
-	@RequestMapping(value = "/users/{id}/theatres/{id}/movies/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Movie> bookMovie(@PathVariable("id") Long movieId,
-			@RequestBody Movie movie,
-			@RequestBody ShowTime showtime) { // showtime gets passed here and we handle the booking in method?
+	//passing theater id so that it will show theater specific movies only
+	@RequestMapping(value = "/users/{userId}/theaters/{theaterId}/movies", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Movie> getMoviesInTheater(@PathVariable("userId") Long userId, 
+													@PathVariable("theaterId") Long theaterId) {
+		return null;
+	}
+
+	//passing theater id so that it will show theater specific movies with id only
+	@RequestMapping(value = "/users/{userId}/theaters/{theaterId}/movies/{movieId}", method = RequestMethod.GET)
+	public ResponseEntity<Movie> getMovieInTheater(@PathVariable("userId") Long userId, 
+									@PathVariable("theaterId") Long theaterId, 
+									@PathVariable("movieId") Long movieId) {
+		return null;
+	}
+
+	// Need an admin user ID check - only admin can create movie
+	@RequestMapping(value = "/users/{userId}/theaters/movies", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<Movie> createMovie(@PathVariable("userId") Long userId, @RequestBody Movie movie) {
+		return null;
+	}
+	// Need an admin user ID check - only admin can delete movie
+	@RequestMapping(value = "/users/{userId}/movies/{movieId}", method = RequestMethod.DELETE)
+	public ResponseEntity<Movie> deleteMovie(@PathVariable("userId") Long userId, @PathVariable("movieId") Long movieId) {
+		return null;
+	}
+	// Need an admin user ID check - only admin can update movie
+	@RequestMapping(value = "/users/{userId}/movies/{movieId}", method = RequestMethod.PUT)
+	public ResponseEntity<Movie> updateMovie(@PathVariable("userId") Long userId, @PathVariable("movieId") Long movieId, @RequestBody Movie movie) {
 		return null;
 	}
 
 	/**
 	 * ShowTime Controller
 	 */
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<ShowTime> showTimings() {
-		return null;	
-	}
-
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes/{id}", method = RequestMethod.GET)
-	public ResponseEntity<ShowTime> getShowTiming(@PathVariable("id") Long showId) {
-		return null;
-	}
-	
-	// Admin ID check below 3 
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<ShowTime> createShowTiming(@RequestBody ShowTime showtime) {
-		return null;
-	}
-
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<ShowTime> deleteShowTiming(@PathVariable("id") Long showId) {
-		return null;
-	}
-
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<ShowTime> updateShowTiming(@PathVariable("id") Long showId,
-			@RequestBody ShowTime showtime) {
-		return null;
-	}
+//	//user id is not needed as both admin and customer can see the list
+//	@RequestMapping(value = "/users/showtimes", method = RequestMethod.GET, produces = "application/json")
+//	public ResponseEntity<ShowTime> showTimings() {
+//		return null;	
+//	}
+//	//user id is not needed as both admin and customer can see the list
+//	@RequestMapping(value = "/users/showtimes/{showtimeId}", method = RequestMethod.GET)
+//	public ResponseEntity<ShowTime> getShowTiming(@PathVariable("showtimeId") Long showtimeId) {
+//		return null;
+//	}
+//	
+//	// Admin ID check - only admin can create showtimes
+//	@RequestMapping(value = "/users/{userId}/showtimes", method = RequestMethod.POST, produces = "application/json")
+//	public ResponseEntity<ShowTime> createShowTiming(@PathVariable("userId") Long userId, @RequestBody ShowTime showtime) {
+//		return null;
+//	}
+//	// Admin ID check - only admin can delete showtimes
+//	@RequestMapping(value = "/users/{userId}/showtimes/{showtimeId}", method = RequestMethod.DELETE)
+//	public ResponseEntity<ShowTime> deleteShowTiming(@PathVariable("userId") Long userId,
+//			@PathVariable("showtimeId") Long showtimeId) {
+//		return null;
+//	}
+//
+//	// Admin ID check - only admin can update showtimes
+//	@RequestMapping(value = "/users/{userId}/showtimes/{showtimeId}", method = RequestMethod.PUT)
+//	public ResponseEntity<ShowTime> updateShowTiming(@PathVariable("userId") Long userId,
+//			@PathVariable("showtimeId") Long showtimeId,
+//			@RequestBody ShowTime showtime) {
+//		return null;
+//	}
 
 	/**
 	 * BookingController
 	 */
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes/{id}/bookings", method = RequestMethod.GET, produces = "application/json")
+	//Admin ID check - only admin can see all bookings
+	@RequestMapping(value = "/users/{userId}/bookings", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Booking> bookings() {
 		return null;
 	}
-
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes/{id}/bookings/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Booking> getBookings(@PathVariable("id") Long bookingId) {
+	//admin and customer both can see booking
+	@RequestMapping(value = "/users/{userId}/bookings/{bookingId}", method = RequestMethod.GET)
+	public ResponseEntity<Booking> getBookingForId(@PathVariable("bookingId") Long bookingId) {
 		return null;
 	}
-
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes/{id}/bookings", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<Booking> createBookings(@RequestBody Booking booking) {
+	//admin and customer both can delete booking
+	@RequestMapping(value = "/users/{userId}/bookings/{bookingId}", method = RequestMethod.DELETE)
+	public ResponseEntity<Booking> deleteBookings(@PathVariable("userId") Long userId,
+			@PathVariable("bookingId") Long bookingId) {
 		return null;
 	}
-
-	@RequestMapping(value = "/users/{id}/theaters/{id}/movies/{id}/showtimes/{id}/bookings/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Booking> deleteBookings(@PathVariable("id") Long bookingId) {
-		return null;
-	}
-
-	@RequestMapping(value = "/users/{userId}/theaters/{theaterId}/movies/{movieId}/bookings/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Booking> makeBooking(@PathVariable("userId") Long userid, 
-			@PathVariable("theaterId") Long theaterId,
-			@PathVariable("movieId") Long movieId, 
-			@PathVariable("id") Long bookingId,
-			@RequestBody ShowTime showtime) {
+	//admin and customer both can make booking
+	@RequestMapping(value = "/users/bookings", method = RequestMethod.POST)
+	public ResponseEntity<Booking> makeBooking( 
+			@RequestBody Booking booking) {		
 		return null;
 	}
 }
