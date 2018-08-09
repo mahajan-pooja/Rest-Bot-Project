@@ -10,6 +10,6 @@ public interface TheaterService {
 
 	public int updateTheaters(Theater theatre);
 
-	public int createTheaters(Theater theatre);
+	// public int createTheaters(Theater theatre);
 
 }
